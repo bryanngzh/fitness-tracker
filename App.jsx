@@ -1,7 +1,7 @@
-import NavRoutes from "./src/NavRoutes";
+import RootNavigation from "./src";
 
 const App = () => {
-  return <NavRoutes />;
+  return <RootNavigation />;
 };
 
 export default App;
