@@ -4,14 +4,14 @@ import { COLOURS, SIZES } from "../../constants/theme";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    padding: 40,
+    marginTop: 100,
   },
   titleContainer: {
-    flex: 2,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 16,
   },
   title: {
     marginTop: 16,
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   inputContainer: {
-    flex: 3,
     width: "100%",
   },
   input: {
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     bottom: 0,
     position: "absolute",
-    marginBottom: 20,
+    marginBottom: 40,
   },
   text: {
     fontSize: SIZES.MEDIUM,

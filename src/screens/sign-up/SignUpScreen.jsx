@@ -60,10 +60,10 @@ const SignUpScreen = () => {
           <Text style={styles.btnText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.signUpContainer}>
+      <View style={styles.logInContainer}>
         <Text style={styles.text}>Already have an account? </Text>
         <TouchableOpacity onPress={navigateToSignIn}>
-          <Text style={styles.signUpText}>Log In</Text>
+          <Text style={styles.logInText}>Log In</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,4 +1,5 @@
 import * as Font from "expo-font";
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import RootNavigation from "./src";
 
@@ -25,7 +26,12 @@ const App = () => {
     return null;
   }
 
-  return <RootNavigation />;
+  return (
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="#000000" />
+      <RootNavigation />
+    </>
+  );
 };
 
 export default App;
