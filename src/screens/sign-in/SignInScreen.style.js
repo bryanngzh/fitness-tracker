@@ -35,18 +35,6 @@ const styles = StyleSheet.create({
     borderColor: COLOURS.GRAY,
     marginBottom: 16,
   },
-  btnContainer: {
-    width: "100%",
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: COLOURS.BLUE,
-    marginBottom: 16,
-  },
-  btnText: {
-    color: "white",
-  },
   signUpContainer: {
     flexDirection: "row",
     bottom: 0,

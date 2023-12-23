@@ -2,7 +2,9 @@ import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button } from "../../components";
 import { FIREBASE_AUTH } from "../../configs/firebase";
+import { COLOURS } from "../../constants/theme";
 import styles from "./SignInScreen.style";
 
 const SignInScreen = () => {
@@ -46,9 +48,7 @@ const SignInScreen = () => {
           value={password}
           onChangeText={setPassword}
         />
-        <TouchableOpacity onPress={handleSignIn} style={styles.btnContainer}>
-          <Text style={styles.btnText}>Log In</Text>
-        </TouchableOpacity>
+        <Button colour={COLOURS.BLUE} onPress={handleSignIn} text={"Log In"} />
       </View>
       <View style={styles.signUpContainer}>
         <Text style={styles.text}>Don't have an account? </Text>
