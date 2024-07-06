@@ -5,6 +5,7 @@ import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Box, Button } from "../../components";
+import { apiConfig } from "../../configs/api";
 import { FIREBASE_AUTH } from "../../configs/firebase";
 import { COLOURS } from "../../constants/theme";
 import styles from "./ProfileScreen.style";
@@ -26,7 +27,7 @@ const ProfileScreen = () => {
       const fetchAccount = async () => {
         try {
           const response = await axios.get(
-            `http://192.168.86.171:3000/users?email=${user.email}`
+            `${apiConfig.apiUrl}/users?email=${user.email}`
           );
           setAccount(response.data);
         } catch (error) {
@@ -49,15 +50,15 @@ const ProfileScreen = () => {
         </View>
       </View>
       <View style={styles.userContainer}>
-        <Text style={styles.userText}>{account.name}</Text>
+        <Text style={styles.userText}>{user.displayName}</Text>
       </View>
       <Box>
         <View style={styles.textContainer}>
-          <MaterialIcon name={"account"} size={"20"} />
+          <MaterialIcon name={"account"} size={20} />
           <Text style={styles.infoText}>{account.name}</Text>
         </View>
         <View style={styles.textContainer}>
-          <MaterialIcon name={"email"} size={"20"} />
+          <MaterialIcon name={"email"} size={20} />
           <Text style={styles.infoText}>{account.email}</Text>
         </View>
       </Box>

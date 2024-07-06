@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Button } from "../../components";
+import { apiConfig } from "../../configs/api";
 import { FIREBASE_AUTH } from "../../configs/firebase";
 import { COLOURS } from "../../constants/theme";
 import styles from "./SignUpScreen.style";
@@ -17,12 +18,23 @@ const SignUpScreen = () => {
   const handleSignUp = () => {
     createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        axios.post("http://192.168.86.171:3000/users/", {
-          email: email,
-          name: name,
-        });
-        console.log(user);
+        return FIREBASE_AUTH.signOut()
+          .then(() => {
+            // Setting display name for the user
+            return updateProfile(userCredential.user, {
+              displayName: name,
+            });
+          })
+          .then(() => {
+            // Once display name is updated, make an axios POST request to your server
+            return axios.post(`${apiConfig.apiUrl}/users/`, {
+              email: email,
+              name: name,
+            });
+          });
+      })
+      .then(() => {
+        console.log("User signed up successfully!");
       })
       .catch((error) => {
         console.log(error.message);
