@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 5,
   },
   infoText: {
     marginLeft: 10,

@@ -54,12 +54,20 @@ const ProfileScreen = () => {
       </View>
       <Box>
         <View style={styles.textContainer}>
-          <MaterialIcon name={"account"} size={20} />
-          <Text style={styles.infoText}>{account.name}</Text>
-        </View>
-        <View style={styles.textContainer}>
           <MaterialIcon name={"email"} size={20} />
           <Text style={styles.infoText}>{account.email}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <MaterialIcon name={"account"} size={20} />
+          <Text style={styles.infoText}>{account.gender}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <MaterialIcon name={"human-male-height"} size={20} />
+          <Text style={styles.infoText}>{account.height}cm</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <MaterialIcon name={"weight"} size={20} />
+          <Text style={styles.infoText}>{account.weight}kg</Text>
         </View>
       </Box>
       <Button text={"Log Out"} colour={COLOURS.RED} onPress={handleLogout} />
