@@ -54,7 +54,7 @@ const ProfileScreen = () => {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.outerCircle}>
         <View style={styles.innerCircle}>
           <Image
@@ -75,7 +75,7 @@ const ProfileScreen = () => {
         ))}
       </Box>
       <Button text={"Log Out"} colour={COLOURS.RED} onPress={handleLogout} />
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -35,7 +35,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Hi {user.displayName}, </Text>
       <Text style={styles.title}>What are you working on today? </Text>
       <Text style={styles.date}>{dayjs().format("MMMM D, YYYY")}</Text>
@@ -53,7 +53,7 @@ const HomeScreen = () => {
         ))}
         <Text style={styles.title}>Past Workouts</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

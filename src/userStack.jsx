@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { SIZES } from "./constants/theme";
 import AddWorkoutScreen from "./screens/add-workout/AddWorkoutScreen";
@@ -12,9 +13,9 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const CustomHeader = ({ title }) => (
-  <View style={styles.header}>
+  <SafeAreaView style={styles.header}>
     <Text style={styles.headerText}>{title}</Text>
-  </View>
+  </SafeAreaView>
 );
 
 const TabNavigator = () => {
@@ -61,8 +62,7 @@ const UserStack = () => {
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    marginTop: 7,
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#E0E0E0",
