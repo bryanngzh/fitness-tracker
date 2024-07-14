@@ -138,7 +138,7 @@ const AddWorkoutScreen = () => {
           ))}
           <Text style={styles.title}>Activities</Text>
           <Button
-            colour={COLOURS.GREEN}
+            colour={COLOURS.BLUE}
             text="Add New Activity"
             onPress={onModalOpen}
           />
