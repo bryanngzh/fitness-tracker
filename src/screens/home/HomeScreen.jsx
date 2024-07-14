@@ -3,7 +3,6 @@ import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Box, Button } from "../../components";
 import WorkoutDropdown from "../../components/WorkoutDropdown/WorkoutDropdown";
 import { apiConfig } from "../../configs/api";
@@ -62,6 +61,22 @@ const HomeScreen = () => {
     navigation.navigate("AddWorkout");
   };
 
+  const handleDeleteWorkout = async (id, index) => {
+    try {
+      const response = axios
+        .delete(`${apiConfig.apiUrl}/workout?id=${id}`)
+        .then(() => {
+          // remove workout from data array
+          setData({
+            ...data,
+            workouts: data.workouts.filter((_, i) => i !== index),
+          });
+        });
+    } catch (error) {
+      console.error("Error deleting workout:", error);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Hi {user.displayName}, </Text>
@@ -86,7 +101,13 @@ const HomeScreen = () => {
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 5)
           .map((workout, index) => (
-            <WorkoutDropdown key={workout.name + index} workout={workout} />
+            <WorkoutDropdown
+              key={workout.name + index}
+              workout={workout}
+              handleDelete={handleDeleteWorkout}
+              id={workout.id}
+              index={index}
+            />
           ))}
       </View>
     </ScrollView>

@@ -5,7 +5,7 @@ import ActivityBox from "../ActivityBox/ActivityBox";
 import Box from "../Box/Box";
 import styles from "./WorkoutDropdown.style";
 
-const WorkoutDropdown = ({ workout }) => {
+const WorkoutDropdown = ({ workout, handleDelete, id, index }) => {
   const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString("en-US", options);
@@ -32,7 +32,7 @@ const WorkoutDropdown = ({ workout }) => {
               style={styles.rightIcon}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleDelete(id, index)}>
             <MaterialIcon name="delete" size={20} style={styles.rightIcon} />
           </TouchableOpacity>
         </View>
