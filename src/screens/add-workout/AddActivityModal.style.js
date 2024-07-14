@@ -25,6 +25,37 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
+  input: {
+    width: "100%",
+    height: 40,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: "white",
+    borderColor: COLOURS.GRAY,
+    marginBottom: 16,
+    color: COLOURS.BLACK,
+  },
+  modalBox: {
+    paddingTop: 20,
+    paddingHorizontal: 40,
+  },
+  picker: {
+    width: "100%",
+  },
+  pickerItem: {
+    fontSize: SIZES.MEDIUM,
+  },
+  pickerBorder: {
+    width: "100%",
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: COLOURS.GRAY,
+    marginBottom: 16,
+    justifyContent: "center",
+    backgroundColor: "white",
+  },
 });
 
 export default styles;

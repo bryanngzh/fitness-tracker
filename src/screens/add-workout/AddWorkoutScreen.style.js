@@ -20,17 +20,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
   },
-  input: {
-    width: "100%",
-    height: 40,
-    paddingHorizontal: 20,
-    borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: "white",
-    borderColor: COLOURS.GRAY,
-    marginBottom: 16,
-    color: COLOURS.BLACK,
-  },
+
   btnContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
@@ -43,51 +33,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: "48%",
-  },
-  modalBox: {
-    paddingTop: 20,
-    paddingHorizontal: 40,
-  },
-  picker: {
-    width: "100%",
-  },
-  pickerItem: {
-    fontSize: SIZES.MEDIUM,
-  },
-  pickerBorder: {
-    width: "100%",
-    height: 40,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: COLOURS.GRAY,
-    marginBottom: 16,
-    justifyContent: "center",
-    backgroundColor: "white",
-  },
-  activityBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    marginTop: 5,
-  },
-  icon: {
-    marginRight: 15,
-  },
-  textContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  activityName: {
-    fontWeight: "bold",
-  },
-  activityDetail: {
-    marginTop: 2,
-  },
-  trashIcon: {
-    marginLeft: "auto",
   },
 });
 
