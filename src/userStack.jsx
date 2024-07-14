@@ -1,13 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StyleSheet, Text, View } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { SIZES } from "./constants/theme";
 import AddWorkoutScreen from "./screens/add-workout/AddWorkoutScreen";
 import HomeScreen from "./screens/home/HomeScreen";
 import ProfileScreen from "./screens/profile/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const CustomHeader = ({ title }) => (
+  <View style={styles.header}>
+    <Text style={styles.headerText}>{title}</Text>
+  </View>
+);
 
 const TabNavigator = () => {
   return (
@@ -39,12 +47,30 @@ const TabNavigator = () => {
 const UserStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{
+          header: () => <CustomHeader title="FitnessTracker" />,
+        }}
+      >
         <Stack.Screen name="Tabs" component={TabNavigator} />
         <Stack.Screen name="AddWorkout" component={AddWorkoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    height: 80,
+    marginTop: 7,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#E0E0E0",
+  },
+  headerText: {
+    fontSize: SIZES.LARGE,
+    fontFamily: "Title-Bold",
+  },
+});
 
 export default UserStack;
