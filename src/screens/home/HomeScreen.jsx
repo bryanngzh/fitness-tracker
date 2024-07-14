@@ -46,7 +46,7 @@ const HomeScreen = () => {
       />
       <View style={styles.boxContainer}>
         {stats.map((stat) => (
-          <Box style={styles.box}>
+          <Box key={stat.name} style={styles.box}>
             <Text>{stat.name}</Text>
             <Text>DATA {stat.postFix}</Text>
           </Box>
