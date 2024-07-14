@@ -2,9 +2,10 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Box, Button } from "../../components";
+import WorkoutDropdown from "../../components/WorkoutDropdown/WorkoutDropdown";
 import { apiConfig } from "../../configs/api";
 import { FIREBASE_AUTH } from "../../configs/firebase";
 import styles from "./HomeScreen.style";
@@ -62,7 +63,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Hi {user.displayName}, </Text>
       <Text style={styles.title}>What are you working on today? </Text>
       <Text style={styles.date}>{dayjs().format("MMMM D, YYYY")}</Text>
@@ -81,8 +82,11 @@ const HomeScreen = () => {
           </Box>
         ))}
         <Text style={styles.title}>Past Workouts</Text>
+        {data.workouts.map((workout) => (
+          <WorkoutDropdown workout={workout} />
+        ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

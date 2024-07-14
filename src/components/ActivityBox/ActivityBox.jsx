@@ -1,14 +1,18 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Box from "../Box/Box";
 import styles from "./ActivityBox.style";
 
-const ActivityBox = ({ activity }) => {
+const ActivityBox = ({ activity, additionalStyle }) => {
   const isRunning = activity.type === "Running";
+  const combinedStyles = StyleSheet.compose(
+    styles.activityBox,
+    additionalStyle
+  );
 
   return (
-    <Box key={activity.name} style={styles.activityBox}>
+    <Box key={activity.name} style={combinedStyles}>
       <MaterialIcon
         style={styles.icon}
         name={isRunning ? "run" : "weight-lifter"}
