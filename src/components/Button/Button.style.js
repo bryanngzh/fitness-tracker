@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLOURS } from "../../constants/theme";
 
 const styles = StyleSheet.create({
   btnContainer: (colour) => ({
@@ -8,7 +9,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     backgroundColor: colour || COLOURS.BLUE,
-    marginBottom: 16,
   }),
   btnText: {
     color: "white",
