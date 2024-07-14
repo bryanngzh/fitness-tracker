@@ -10,6 +10,21 @@ const styles = StyleSheet.create({
     fontFamily: "Title-Bold",
     marginBottom: 16,
   },
+  boxContainer: {
+    marginTop: 14,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    alignItems: "center",
+  },
+  box: {
+    margin: 2,
+    width: "48%",
+    aspectRatio: 1.5,
+  },
+  btn: {
+    marginTop: 14,
+  },
 });
 
 export default styles;
