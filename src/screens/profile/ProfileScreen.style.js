@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 40,
   },
+  box: {
+    marginTop: 20,
+    marginBottom: 16,
+  },
   outerCircle: {
     width: 100,
     height: 100,

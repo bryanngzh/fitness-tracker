@@ -1,4 +1,3 @@
-import { useIsFocused } from "@react-navigation/native";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
@@ -12,7 +11,6 @@ import styles from "./ProfileScreen.style";
 
 const ProfileScreen = () => {
   const user = FIREBASE_AUTH.currentUser;
-  const isFocused = useIsFocused();
   const [account, setAccount] = useState({
     name: "",
     email: "",
@@ -23,21 +21,37 @@ const ProfileScreen = () => {
   };
 
   useEffect(() => {
-    if (isFocused) {
-      const fetchAccount = async () => {
-        try {
-          const response = await axios.get(
-            `${apiConfig.apiUrl}/users?email=${user.email}`
-          );
-          setAccount(response.data);
-        } catch (error) {
-          console.error("Error fetching user account: ", error);
-        }
-      };
-
-      fetchAccount();
-    }
+    const fetchAccount = async () => {
+      try {
+        const response = await axios.get(
+          `${apiConfig.apiUrl}/users?email=${user.email}`
+        );
+        setAccount(response.data);
+      } catch (error) {
+        console.error("Error fetching user account: ", error);
+      }
+    };
+    fetchAccount();
   }, []);
+
+  const details = [
+    {
+      info: "email",
+      icon: "email",
+    },
+    {
+      info: "gender",
+      icon: "account",
+    },
+    {
+      info: "height",
+      icon: "human-male-height",
+    },
+    {
+      info: "weight",
+      icon: "weight",
+    },
+  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,23 +66,13 @@ const ProfileScreen = () => {
       <View style={styles.userContainer}>
         <Text style={styles.userText}>{user.displayName}</Text>
       </View>
-      <Box>
-        <View style={styles.textContainer}>
-          <MaterialIcon name={"email"} size={20} />
-          <Text style={styles.infoText}>{account.email}</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <MaterialIcon name={"account"} size={20} />
-          <Text style={styles.infoText}>{account.gender}</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <MaterialIcon name={"human-male-height"} size={20} />
-          <Text style={styles.infoText}>{account.height}cm</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <MaterialIcon name={"weight"} size={20} />
-          <Text style={styles.infoText}>{account.weight}kg</Text>
-        </View>
+      <Box style={styles.box}>
+        {details.map((detail) => (
+          <View key={detail.info} style={styles.textContainer}>
+            <MaterialIcon name={detail.icon} size={20} />
+            <Text style={styles.infoText}>{account[detail.info]}</Text>
+          </View>
+        ))}
       </Box>
       <Button text={"Log Out"} colour={COLOURS.RED} onPress={handleLogout} />
     </SafeAreaView>
