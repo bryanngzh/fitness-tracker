@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
     fontFamily: "Title-Bold",
     marginBottom: 16,
   },
+  stats: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
   boxContainer: {
     marginTop: 14,
     flexDirection: "row",

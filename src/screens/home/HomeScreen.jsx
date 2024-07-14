@@ -76,15 +76,18 @@ const HomeScreen = () => {
         {stats.map((stat) => (
           <Box key={stat.name} style={styles.box}>
             <Text>{stat.name}</Text>
-            <Text style={styles.title}>
+            <Text style={styles.stats}>
               {stat.value} {stat.postFix}
             </Text>
           </Box>
         ))}
         <Text style={styles.title}>Past Workouts</Text>
-        {data.workouts.map((workout) => (
-          <WorkoutDropdown workout={workout} />
-        ))}
+        {data.workouts
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 5)
+          .map((workout, index) => (
+            <WorkoutDropdown key={workout.name + index} workout={workout} />
+          ))}
       </View>
     </ScrollView>
   );
