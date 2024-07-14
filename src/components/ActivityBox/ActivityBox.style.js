@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   trashIcon: {
+    marginLeft: 10,
+  },
+  iconContainer: {
+    flexDirection: "row",
     marginLeft: "auto",
   },
 });

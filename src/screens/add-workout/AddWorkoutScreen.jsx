@@ -98,6 +98,13 @@ const AddWorkoutScreen = () => {
     setIsModalVisible(false);
   };
 
+  const deleteActivity = (index) => {
+    setForm({
+      ...form,
+      activities: form.activities.filter((_, i) => i !== index),
+    });
+  };
+
   const formFields = [
     {
       label: "Name",
@@ -144,7 +151,12 @@ const AddWorkoutScreen = () => {
           />
           {form.activities &&
             form.activities.map((activity, index) => (
-              <ActivityBox key={activity.name + index} activity={activity} />
+              <ActivityBox
+                key={activity.name + index}
+                activity={activity}
+                onPress={deleteActivity}
+                index={index}
+              />
             ))}
           <AddActivityModal
             activity={activity}

@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Box from "../Box/Box";
 import styles from "./ActivityBox.style";
 
-const ActivityBox = ({ activity, additionalStyle }) => {
+const ActivityBox = ({ activity, additionalStyle, onPress, index }) => {
   const isRunning = activity.type === "Running";
   const combinedStyles = StyleSheet.compose(
     styles.activityBox,
@@ -34,7 +34,13 @@ const ActivityBox = ({ activity, additionalStyle }) => {
           </>
         )}
       </View>
-      <MaterialIcon name="delete" size={20} style={styles.trashIcon} />
+      {onPress && (
+        <View style={styles.iconContainer}>
+          <TouchableOpacity onPress={() => onPress(index)}>
+            <MaterialIcon name="delete" size={20} style={styles.trashIcon} />
+          </TouchableOpacity>
+        </View>
+      )}
     </Box>
   );
 };
