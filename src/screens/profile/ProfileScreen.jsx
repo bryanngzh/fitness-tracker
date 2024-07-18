@@ -1,7 +1,7 @@
+import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Image, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Box, Button } from "../../components";
 import { apiConfig } from "../../configs/api";
@@ -20,19 +20,22 @@ const ProfileScreen = () => {
     FIREBASE_AUTH.signOut();
   };
 
-  useEffect(() => {
-    const fetchAccount = async () => {
-      try {
-        const response = await axios.get(
-          `${apiConfig.apiUrl}/users?email=${user.email}`
-        );
-        setAccount(response.data);
-      } catch (error) {
-        console.error("Error fetching user account: ", error);
-      }
-    };
-    fetchAccount();
-  }, []);
+  const fetchAccount = async () => {
+    try {
+      const response = await axios.get(
+        `${apiConfig.apiUrl}/users?email=${user.email}`
+      );
+      setAccount(response.data);
+    } catch (error) {
+      console.error("Error fetching user account: ", error);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchAccount();
+    }, [])
+  );
 
   const details = [
     {

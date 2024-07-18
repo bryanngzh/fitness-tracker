@@ -1,7 +1,7 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Box, Button } from "../../components";
 import WorkoutDropdown from "../../components/WorkoutDropdown/WorkoutDropdown";
@@ -19,19 +19,22 @@ const HomeScreen = () => {
     workouts: [],
   });
 
-  useEffect(() => {
-    const fetchAccount = async () => {
-      try {
-        const response = await axios.get(
-          `${apiConfig.apiUrl}/workout?email=${user.email}`
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching user account: ", error);
-      }
-    };
-    fetchAccount();
-  }, []);
+  const fetchAccount = async () => {
+    try {
+      const response = await axios.get(
+        `${apiConfig.apiUrl}/workout?email=${user.email}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching user account: ", error);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchAccount();
+    }, [])
+  );
 
   const stats = [
     {
@@ -63,15 +66,11 @@ const HomeScreen = () => {
 
   const handleDeleteWorkout = async (id, index) => {
     try {
-      const response = axios
-        .delete(`${apiConfig.apiUrl}/workout?id=${id}`)
-        .then(() => {
-          // remove workout from data array
-          setData({
-            ...data,
-            workouts: data.workouts.filter((_, i) => i !== index),
-          });
-        });
+      await axios.delete(`${apiConfig.apiUrl}/workout?id=${id}`);
+      setData({
+        ...data,
+        workouts: data.workouts.filter((_, i) => i !== index),
+      });
     } catch (error) {
       console.error("Error deleting workout:", error);
     }
@@ -92,12 +91,14 @@ const HomeScreen = () => {
           <Box key={stat.name} style={styles.box}>
             <Text>{stat.name}</Text>
             <Text style={styles.stats}>
-              {stat.value} {stat.postFix}
+              {stat.value ? stat.value : 0} {stat.postFix}
             </Text>
           </Box>
         ))}
-        <Text style={styles.title}>Past Workouts</Text>
-        {data.workouts
+      </View>
+      <Text style={styles.title}>Past Workouts</Text>
+      {data.workouts.length > 0 ? (
+        data.workouts
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 5)
           .map((workout, index) => (
@@ -108,8 +109,10 @@ const HomeScreen = () => {
               id={workout.id}
               index={index}
             />
-          ))}
-      </View>
+          ))
+      ) : (
+        <Text>No workouts to show</Text>
+      )}
     </ScrollView>
   );
 };
