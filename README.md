@@ -18,7 +18,7 @@ Welcome to the Fitness Tracker application! This app is developed using React Na
 
 ## Screenshots
 
-![Activity Tracking](screenshots/activity_tracking.png)
+<img src="screenshots/activity_tracking.png" alt="Activity Tracking" style="width:50%;"/>
 
 ## Installation
 
